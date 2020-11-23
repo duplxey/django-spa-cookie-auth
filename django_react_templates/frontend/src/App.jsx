@@ -22,10 +22,10 @@ class App extends React.Component {
     fetch("/api/csrf/", {
       credentials: "same-origin",
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      this.setState({csrf: data.csrf});
+    .then((res) => {
+      let csrfToken = res.headers.get("X-CSRFToken");
+      this.setState({csrf: csrfToken});
+      console.log(csrfToken);
     })
     .catch((err) => {
       console.log(err);

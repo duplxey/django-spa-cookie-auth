@@ -13,7 +13,9 @@ def index_view(request):
 
 
 def get_csrf(request):
-    return JsonResponse({"csrf": get_token(request)})
+    response = JsonResponse({"detail": "CSRF cookie set"})
+    response["X-CSRFToken"] = get_token(request)
+    return response
 
 
 @ensure_csrf_cookie
