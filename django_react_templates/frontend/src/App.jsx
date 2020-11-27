@@ -1,4 +1,7 @@
 import React from "react";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 class App extends React.Component {
 
@@ -6,7 +9,6 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      csrf: "",
       username: "",
       password: "",
       error: "",
@@ -16,20 +18,6 @@ class App extends React.Component {
 
   componentDidMount = () => {
     this.getSession();
-  }
-
-  getCSRF = () => {
-    fetch("/api/csrf/", {
-      credentials: "same-origin",
-    })
-    .then((res) => {
-      let csrfToken = res.headers.get("X-CSRFToken");
-      this.setState({csrf: csrfToken});
-      console.log(csrfToken);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   }
 
   getSession = () => {
@@ -43,7 +31,6 @@ class App extends React.Component {
         this.setState({isAuthenticated: true});
       } else {
         this.setState({isAuthenticated: false});
-        this.getCSRF();
       }
     })
     .catch((err) => {
@@ -73,7 +60,7 @@ class App extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRFToken": this.state.csrf,
+        "X-CSRFToken": cookies.get("csrftoken"),
       },
       credentials: "same-origin",
       body: JSON.stringify({username: this.state.username, password: this.state.password}),
@@ -97,7 +84,6 @@ class App extends React.Component {
     .then((data) => {
       console.log(data);
       this.setState({isAuthenticated: false});
-      this.getCSRF();
     })
     .catch((err) => {
       console.log(err);
