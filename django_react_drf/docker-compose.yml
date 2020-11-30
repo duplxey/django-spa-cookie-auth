@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+  backend:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/usr/src/app
+    expose:
+      - 8000
+
+  frontend:
+    stdin_open: true
+    build: ./frontend
+    command: npm start
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    expose:
+      - 3000
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+  reverse_proxy:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
