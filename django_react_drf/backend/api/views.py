@@ -15,15 +15,6 @@ def get_csrf(request):
     return response
 
 
-class CheckSessionView(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
-    @staticmethod
-    def get(request, format=None):
-        return JsonResponse({"loggedIn": True})
-
-
 @require_POST
 def login_view(request):
     data = json.loads(request.body)
@@ -48,3 +39,12 @@ def logout_view(request):
 
     logout(request)
     return JsonResponse({"detail": "Successfully logged out."})
+
+
+class SessionView(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def get(request, format=None):
+        return JsonResponse({"loggedIn": True})

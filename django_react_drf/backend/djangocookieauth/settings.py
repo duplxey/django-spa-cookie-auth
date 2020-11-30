@@ -104,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Django REST framework
+# https://www.django-rest-framework.org/api-guide/settings/
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -114,6 +115,8 @@ REST_FRAMEWORK = {
     ],
 }
 
+
+# Cookie settings
 
 CSRF_COOKIE_SAMESITE = 'Strict'
 SESSION_COOKIE_SAMESITE = 'Strict'

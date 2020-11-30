@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   getSession = () => {
-    fetch("/api/whoami/", {
+    fetch("/api/session/", {
       credentials: "same-origin",
     })
     .then((res) => res.json())
@@ -107,7 +107,7 @@ class App extends React.Component {
   render() {
     if (!this.state.isAuthenticated) {
       return (
-        <div className="container">
+        <div className="container mt-3">
           <h1>React Cookie Auth</h1>
           <br />
           <h2>Login</h2>
@@ -133,7 +133,7 @@ class App extends React.Component {
       );
     }
     return (
-      <div className="container">
+      <div className="container mt-3">
         <h1>React Cookie Auth</h1>
         <p>You are logged in!</p>
         <button className="btn btn-primary" onClick={this.logout}>Log out</button>
