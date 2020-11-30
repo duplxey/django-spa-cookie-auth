@@ -14,7 +14,7 @@ def get_csrf(request):
 
 
 @ensure_csrf_cookie
-def check_session(request):
+def session_view(request):
     if not request.user.is_authenticated:
         return JsonResponse({"loggedIn": False})
 
