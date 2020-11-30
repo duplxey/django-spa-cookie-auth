@@ -13,14 +13,6 @@ def get_csrf(request):
     return response
 
 
-@ensure_csrf_cookie
-def session_view(request):
-    if not request.user.is_authenticated:
-        return JsonResponse({"loggedIn": False})
-
-    return JsonResponse({"loggedIn": True})
-
-
 @require_POST
 def login_view(request):
     data = json.loads(request.body)
@@ -45,3 +37,11 @@ def logout_view(request):
 
     logout(request)
     return JsonResponse({"detail": "Successfully logged out."})
+
+
+@ensure_csrf_cookie
+def session_view(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"loggedIn": False})
+
+    return JsonResponse({"loggedIn": True})

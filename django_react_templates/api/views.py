@@ -2,17 +2,8 @@ import json
 
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
-from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_POST
-
-
-@ensure_csrf_cookie
-def check_session(request):
-    if not request.user.is_authenticated:
-        return JsonResponse({"loggedIn": False})
-
-    return JsonResponse({"loggedIn": True})
 
 
 @require_POST
@@ -39,3 +30,11 @@ def logout_view(request):
 
     logout(request)
     return JsonResponse({"detail": "Successfully logged out."})
+
+
+@ensure_csrf_cookie
+def session_view(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"loggedIn": False})
+
+    return JsonResponse({"loggedIn": True})
