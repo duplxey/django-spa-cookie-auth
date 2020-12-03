@@ -47,4 +47,4 @@ class SessionView(APIView):
 
     @staticmethod
     def get(request, format=None):
-        return JsonResponse({"loggedIn": True})
+        return JsonResponse({"isAuthenticated": True})

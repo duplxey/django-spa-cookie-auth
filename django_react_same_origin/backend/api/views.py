@@ -42,6 +42,6 @@ def logout_view(request):
 @ensure_csrf_cookie
 def session_view(request):
     if not request.user.is_authenticated:
-        return JsonResponse({"loggedIn": False})
+        return JsonResponse({"isAuthenticated": False})
 
-    return JsonResponse({"loggedIn": True})
+    return JsonResponse({"isAuthenticated": True})

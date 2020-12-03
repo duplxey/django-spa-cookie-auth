@@ -39,7 +39,7 @@ class App extends React.Component {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      if (data.loggedIn) {
+      if (data.isAuthenticated) {
         this.setState({isAuthenticated: true});
       } else {
         this.setState({isAuthenticated: false});
