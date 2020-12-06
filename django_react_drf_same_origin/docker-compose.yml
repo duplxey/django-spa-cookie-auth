@@ -4,7 +4,6 @@ services:
 
   backend:
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/usr/src/app
     expose:
@@ -27,7 +26,7 @@ services:
   reverse_proxy:
     build: ./nginx
     ports:
-      - 80:80
+      - 81:80
     depends_on:
       - backend
       - frontend
