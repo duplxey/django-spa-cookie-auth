@@ -4,11 +4,11 @@ from django.urls import path, include
 
 
 def index_view(request):
-    return render(request, "build/index.html")
+    return render(request, 'build/index.html')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path("", index_view, name="index"),
+    path('', index_view, name='index'),
 ]

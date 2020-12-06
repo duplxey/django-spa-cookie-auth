@@ -15,3 +15,6 @@ RUN pip install -r requirements.txt
 
 # add app
 COPY . .
+
+# start app
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

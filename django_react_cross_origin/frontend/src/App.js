@@ -19,8 +19,8 @@ class App extends React.Component {
   }
 
   getCSRF = () => {
-    fetch("/api/csrf/", {
-      credentials: "same-origin",
+    fetch("http://localhost:8000/api/csrf/", {
+      credentials: "include",
     })
     .then((res) => {
       let csrfToken = res.headers.get("X-CSRFToken");
@@ -33,8 +33,8 @@ class App extends React.Component {
   }
 
   getSession = () => {
-    fetch("/api/session/", {
-      credentials: "same-origin",
+    fetch("http://localhost:8000/api/session/", {
+      credentials: "include",
     })
     .then((res) => res.json())
     .then((data) => {
@@ -69,13 +69,13 @@ class App extends React.Component {
 
   login = (event) => {
     event.preventDefault();
-    fetch("/api/login/", {
+    fetch("http://localhost:8000/api/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": this.state.csrf,
       },
-      credentials: "same-origin",
+      credentials: "include",
       body: JSON.stringify({username: this.state.username, password: this.state.password}),
     })
     .then(this.isResponseOk)
@@ -90,8 +90,8 @@ class App extends React.Component {
   }
 
   logout = () => {
-    fetch("/api/logout", {
-      credentials: "same-origin",
+    fetch("http://localhost:8000/api/logout", {
+      credentials: "include",
     })
     .then(this.isResponseOk)
     .then((data) => {
