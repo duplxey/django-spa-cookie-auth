@@ -45,3 +45,10 @@ def session_view(request):
         return JsonResponse({'isAuthenticated': False})
 
     return JsonResponse({'isAuthenticated': True})
+
+
+def whoami_view(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'isAuthenticated': False})
+
+    return JsonResponse({'username': request.user.username})
