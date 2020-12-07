@@ -48,3 +48,12 @@ class SessionView(APIView):
     @staticmethod
     def get(request, format=None):
         return JsonResponse({'isAuthenticated': True})
+
+
+class WhoAmIView(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def get(request, format=None):
+        return JsonResponse({'username': request.user.username})
