@@ -1,5 +1,7 @@
 import React from "react";
 
+const BASE_URL = "fuck";
+
 class App extends React.Component {
 
   constructor(props) {
@@ -52,7 +54,10 @@ class App extends React.Component {
   }
 
   whoami = () => {
-    fetch("/api/whoami/", {
+    fetch("http://localhost:8000/api/whoami/", {
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "same-origin",
     })
     .then((res) => res.json())
