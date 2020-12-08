@@ -1,7 +1,5 @@
 import React from "react";
 
-const BASE_URL = "fuck";
-
 class App extends React.Component {
 
   constructor(props) {
