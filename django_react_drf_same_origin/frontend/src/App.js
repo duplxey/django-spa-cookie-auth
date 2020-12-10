@@ -53,6 +53,9 @@ class App extends React.Component {
 
   whoami = () => {
     fetch("/api/whoami/", {
+      headers: {
+        "Content-Type": "application/json",
+      },
       credentials: "same-origin",
     })
     .then((res) => res.json())

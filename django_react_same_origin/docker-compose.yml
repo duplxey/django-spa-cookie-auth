@@ -12,7 +12,6 @@ services:
   frontend:
     stdin_open: true
     build: ./frontend
-    command: npm start
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
