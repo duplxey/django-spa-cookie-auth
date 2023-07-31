@@ -16,7 +16,7 @@ services:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
     expose:
-      - 3000
+      - 5173
     environment:
       - NODE_ENV=development
     depends_on:
