@@ -4,7 +4,7 @@ from django.urls import path, include
 
 
 def index_view(request):
-    return render(request, 'build/index.html')
+    return render(request, 'dist/index.html')
 
 
 urlpatterns = [
